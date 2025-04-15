@@ -1,0 +1,43 @@
+[
+  {
+    "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "name": "Admin User",
+    "email": "admin@example.com",
+    "password": "$2a$10$v5essBftZMiRo1X/LkrThOOJeYHK85bGivIWJUSZwdRq8jur0kj5e",
+    "balance": 5000000000,
+    "isAdmin": true,
+    "status": "active",
+    "createdAt": "2025-03-29T10:00:00.000Z",
+    "trxBalance": 5000000000,
+    "usdtBalance": 500000000,
+    "usdcBalance": 5000000000,
+    "mainWalletAddress": "main_Ximj69jAkHfcYMKo8GKCgyJwgo52XPMnRt"
+  },
+  {
+    "id": "d54b2f88-f6a8-4b8c-8802-f8b4f9f4f4d8",
+    "name": "Emmanuel Henshaw",
+    "email": "emmy3@gmail.com",
+    "password": "$2a$10$JE2L4J6TX5oaA73sL1vNzuYSFqjrk40kR1vSrPfUfW8.SYEO6QVE2",
+    "balance": 0,
+    "isAdmin": false,
+    "status": "active",
+    "createdAt": "2025-04-15T21:48:07.399Z",
+    "mainWalletAddress": "main_QMFxW78Ag74feoEuDSb6ahzv5HPw2qxbbW",
+    "trxWalletAddress": "trx_esgXQM4Tdg7JxjWNvN7pt6ZAN4P87R1nN6",
+    "usdtWalletAddress": "usdt_9HgidYKnrxEjnShXPogp8B6yoBUdKbFwR1",
+    "usdcWalletAddress": "usdc_66tDYqXTZN3BZisr9dH9CiymB8JRHNwsXk",
+    "bnbWalletAddress": "bnb_vM4SXfSyfZNKfejggwKudvEcGN4Wi7eJcn",
+    "solWalletAddress": "sol_hVboRhAhBzdsGnk5WMYb3iGvsX2SJuuW6m",
+    "ethWalletAddress": "eth_nGEJgjNvCYWLUx9h6K1UTWJzDjWtwN39Aw",
+    "btcWalletAddress": "btc_bV4PdZARt9W4tpM832PAm9Mhu9ugzyXYTB",
+    "polWalletAddress": "pol_RZ5Po59tcgYuXnLxP1jxZpd3RyV9BRf8qC",
+    "trxBalance": 0,
+    "usdtBalance": 0,
+    "usdcBalance": 0,
+    "bnbBalance": 0,
+    "solBalance": 0,
+    "ethBalance": 0,
+    "btcBalance": 0,
+    "polBalance": 0
+  }
+]
