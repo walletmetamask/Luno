@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luno - Send</title>
+  <link rel="stylesheet" href="css/luno-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <div class="wallet-header">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <a href="dashboard.html" class="menu-btn" style="color: white;">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+        <h2>Send</h2>
+        <div style="width: 24px;"></div>
+      </div>
+    </div>
+
+    <!-- Send Options -->
+    <div class="send-options">
+      <div class="send-option active" data-form="addressForm">
+        <i class="fas fa-wallet"></i>
+        <span>Address</span>
+      </div>
+      <div class="send-option" data-form="mobileForm">
+        <i class="fas fa-mobile-alt"></i>
+        <span>Mobile</span>
+      </div>
+      <div class="send-option" data-form="scanForm">
+        <i class="fas fa-qrcode"></i>
+        <span>Scan</span>
+      </div>
+    </div>
+
+    <!-- Send Forms -->
+    <div class="send-form active" id="addressForm">
+      <div class="form-group">
+        <label for="tokenSelect" class="form-label">Select token</label>
+        <select id="tokenSelect" class="country-select">
+          <option value="MAIN">Main Wallet</option>
+          <option value="TRX">TRX</option>
+          <option value="USDT">USDT</option>
+          <option value="USDC">USDC</option>
+          <option value="BNB">BNB</option>
+          <option value="SOL">SOL</option>
+          <option value="ETH">ETH</option>
+          <option value="BTC">BTC</option>
+          <option value="XRP">XRP</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="recipientAddress" class="form-label">Recipient address</label>
+        <input type="text" id="recipientAddress" class="form-input" placeholder="Enter wallet address">
+      </div>
+      
+      <div class="form-group">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" id="amount" class="form-input" placeholder="0.00" step="0.01" min="0">
+      </div>
+      
+      <div class="form-group">
+        <label for="note" class="form-label">Note (optional)</label>
+        <input type="text" id="note" class="form-input" placeholder="Add a note">
+      </div>
+      
+      <div class="form-error" id="sendError"></div>
+      
+      <button type="button" id="continueBtn" class="auth-btn">Continue</button>
+    </div>
+
+    <div class="send-form" id="mobileForm">
+      <div class="form-group">
+        <label for="tokenSelectMobile" class="form-label">Select token</label>
+        <select id="tokenSelectMobile" class="country-select">
+          <option value="MAIN">Main Wallet</option>
+          <option value="TRX">TRX</option>
+          <option value="USDT">USDT</option>
+          <option value="USDC">USDC</option>
+          <option value="BNB">BNB</option>
+          <option value="SOL">SOL</option>
+          <option value="ETH">ETH</option>
+          <option value="BTC">BTC</option>
+          <option value="XRP">XRP</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="mobileNumber" class="form-label">Mobile number</label>
+        <input type="tel" id="mobileNumber" class="form-input" placeholder="Enter mobile number">
+      </div>
+      
+      <div class="form-group">
+        <label for="amountMobile" class="form-label">Amount</label>
+        <input type="number" id="amountMobile" class="form-input" placeholder="0.00" step="0.01" min="0">
+      </div>
+     <br>
+    <br>
+    
+      
+      <div class="form-group">
+        <label for="noteMobile" class="form-label">Note (optional)</label>
+        <input type="text" id="noteMobile" class="form-input" placeholder="Add a note">
+      </div>
+      
+      <div class="form-error" id="sendErrorMobile"></div>
+      
+      <button type="button" id="continueBtnMobile" class="auth-btn">Continue</button>
+    </div>
+    <br>
+    <br>
+
+    <div class="send-form" id="scanForm">
+      <div class="text-center mb-16">
+        <div style="font-size: 48px; color: var(--primary-color); margin-bottom: 16px;">
+          <i class="fas fa-qrcode"></i>
+        </div>
+        <h3 style="margin-bottom: 8px;">Scan QR Code</h3>
+        <p class="text-secondary">Point your camera at a QR code to scan it</p>
+      </div>
+      
+      <button type="button" id="openCameraBtn" class="auth-btn">Open Camera</button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-compass"></i>
+        <span>Explore</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallets</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-gift"></i>
+        <span>Rewards</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check if user is logged in
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const token = localStorage.getItem("token");
+
+      if (!currentUser || !token) {
+        // Redirect to login if not logged in
+        window.location.href = "index.html";
+        return;
+      }
+
+      // Get token from URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const tokenParam = urlParams.get("token");
+
+      // Update UI with token name
+      const tokenSelect = document.getElementById("tokenSelect");
+      const tokenSelectMobile = document.getElementById("tokenSelectMobile");
+
+      if (tokenParam) {
+        if (tokenSelect) tokenSelect.value = tokenParam;
+        if (tokenSelectMobile) tokenSelectMobile.value = tokenParam;
+      }
+
+      // Send options tab switching
+      const sendOptions = document.querySelectorAll(".send-option");
+      const sendForms = document.querySelectorAll(".send-form");
+
+      sendOptions.forEach(option => {
+        option.addEventListener("click", function() {
+          // Remove active class from all options and forms
+          sendOptions.forEach(opt => opt.classList.remove("active"));
+          sendForms.forEach(form => form.classList.remove("active"));
+          
+          // Add active class to clicked option
+          this.classList.add("active");
+          
+          // Show corresponding form
+          const formId = this.getAttribute("data-form");
+          document.getElementById(formId).classList.add("active");
+        });
+      });
+
+      // Continue button handlers
+      const continueBtn = document.getElementById("continueBtn");
+      if (continueBtn) {
+        continueBtn.addEventListener("click", function() {
+          const tokenType = document.getElementById("tokenSelect").value;
+          const recipientAddress = document.getElementById("recipientAddress").value;
+          const amount = document.getElementById("amount").value;
+          const note = document.getElementById("note").value;
+          const errorElement = document.getElementById("sendError");
+          
+          // Validate inputs
+          if (!recipientAddress) {
+            errorElement.textContent = "Please enter a recipient address";
+            return;
+          }
+          
+          if (!amount || parseFloat(amount) <= 0) {
+            errorElement.textContent = "Please enter a valid amount";
+            return;
+          }
+          
+          // Make API request to send funds
+          fetch("/api/transactions/send", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              recipientAddress,
+              amount: parseFloat(amount),
+              tokenType,
+              note,
+            }),
+          })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                // Show transaction receipt
+                window.location.href = `transactions.html?txId=${data.transactionId}`;
+              } else {
+                errorElement.textContent = data.message || "Failed to send funds";
+              }
+            })
+            .catch(error => {
+              errorElement.textContent = "An error occurred. Please try again.";
+              console.error("Send error:", error);
+            });
+        });
+      }
+
+      // Mobile continue button
+      const continueBtnMobile = document.getElementById("continueBtnMobile");
+      if (continueBtnMobile) {
+        continueBtnMobile.addEventListener("click", function() {
+          const tokenType = document.getElementById("tokenSelectMobile").value;
+          const mobileNumber = document.getElementById("mobileNumber").value;
+          const amount = document.getElementById("amountMobile").value;
+          const note = document.getElementById("noteMobile").value;
+          const errorElement = document.getElementById("sendErrorMobile");
+          
+          // Validate inputs
+          if (!mobileNumber) {
+            errorElement.textContent = "Please enter a mobile number";
+            return;
+          }
+          
+          if (!amount || parseFloat(amount) <= 0) {
+            errorElement.textContent = "Please enter a valid amount";
+            return;
+          }
+          
+          // Show coming soon message for now
+          alert("Mobile sending feature coming soon!");
+        });
+      }
+
+      // Open camera button
+      const openCameraBtn = document.getElementById("openCameraBtn");
+      if (openCameraBtn) {
+        openCameraBtn.addEventListener("click", function() {
+          alert("Camera access feature coming soon!");
+        });
+      }
+    });
+  </script>
+</body>
+</html>

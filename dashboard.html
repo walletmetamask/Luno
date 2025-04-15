@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Wallet - Dashboard</title>
+  <link rel="stylesheet" href="css/new-style.css">
+  <link rel="stylesheet" href="css/luno-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Wallet Header -->
+    <div class="wallet-header">
+      <h1 class="balance-amount" id="balanceAmount">R <span id="balanceValue">0.00</span></h1>
+      <div class="balance-label">Combined Wallet Value</div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <a href="#" class="action-btn">
+        <div class="action-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <span>BUY</span>
+      </a>
+      <a href="#" class="action-btn">
+        <div class="action-icon">
+          <i class="fas fa-tag"></i>
+        </div>
+        <span>SELL</span>
+      </a>
+      <a href="send.html" class="action-btn">
+        <div class="action-icon">
+          <i class="fas fa-paper-plane"></i>
+        </div>
+        <span>SEND</span>
+      </a>
+      <a href="receive.html" class="action-btn">
+        <div class="action-icon">
+          <i class="fas fa-qrcode"></i>
+        </div>
+        <span>RECEIVE</span>
+      </a>
+    </div>
+
+    <!-- Local Currency -->
+    <div class="section-header">LOCAL CURRENCY</div>
+    <div class="card currency-card">
+      <div class="currency-icon">
+        <img src="https://flagcdn.com/za.svg" alt="South Africa" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 40 40\'><rect width=\'40\' height=\'40\' fill=\'%23E03C31\'/><rect y=\'13.33\' width=\'40\' height=\'13.33\' fill=\'%23FFFFFF\'/><rect y=\'16.67\' width=\'40\' height=\'6.67\' fill=\'%23001489\'/></svg>'">
+      </div>
+      <div class="currency-info">
+        <div class="currency-name">South African Rand</div>
+      </div>
+      <div class="currency-value" id="localCurrencyValue">R 0.00</div>
+    </div>
+
+    <!-- Investments Section -->
+    <div class="section-header">YOUR INVESTMENTS</div>
+    <div class="card">
+      <div class="investment-card">
+        <div class="crypto-icon total">
+          <i class="fas fa-wallet"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">Total crypto</div>
+          <div class="investment-value" id="totalCryptoValue">R 0.00</div>
+        </div>
+        <div class="investment-change up">
+          <i class="fas fa-caret-up"></i>
+        </div>
+      </div>
+      
+      <div class="investment-card">
+        <div class="crypto-icon btc">
+          <i class="fab fa-bitcoin"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">BTC <span id="btcAmount">0.00</span></div>
+          <div class="investment-value" id="btcValue">R 0.00</div>
+        </div>
+      </div>
+      
+      <div class="investment-card">
+        <div class="crypto-icon eth">
+          <i class="fab fa-ethereum"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">ETH <span id="ethAmount">0.00</span></div>
+          <div class="investment-value" id="ethValue">R 0.00</div>
+        </div>
+      </div>
+      
+      <div class="investment-card">
+        <div class="crypto-icon xrp">
+          <i class="fas fa-coins"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">XRP <span id="xrpAmount">0.00</span></div>
+          <div class="investment-value" id="xrpValue">R 0.00</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item active">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="transactions.html" class="nav-item">
+        <i class="fas fa-compass"></i>
+        <span>Explore</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallets</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-gift"></i>
+        <span>Rewards</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check if user is logged in
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const token = localStorage.getItem("token");
+
+      if (!currentUser || !token) {
+        // Redirect to login if not logged in
+        window.location.href = "index.html";
+        return;
+      }
+
+      // Update balance display
+      updateBalanceDisplay(currentUser);
+
+      // Set up polling for balance updates - check every 10 seconds
+      setInterval(() => {
+        refreshBalances();
+      }, 10000);
+
+      function updateBalanceDisplay(user) {
+        const balanceValue = document.getElementById("balanceValue");
+        const localCurrencyValue = document.getElementById("localCurrencyValue");
+        const totalCryptoValue = document.getElementById("totalCryptoValue");
+        const btcAmount = document.getElementById("btcAmount");
+        const btcValue = document.getElementById("btcValue");
+        const ethAmount = document.getElementById("ethAmount");
+        const ethValue = document.getElementById("ethValue");
+        const xrpAmount = document.getElementById("xrpAmount");
+        const xrpValue = document.getElementById("xrpValue");
+
+        if (balanceValue) {
+          balanceValue.textContent = formatNumber(user.balance || 0);
+        }
+
+        if (localCurrencyValue) {
+          localCurrencyValue.textContent = `R ${formatNumber(user.balance || 0)}`;
+        }
+
+        // Calculate total crypto value
+        const totalCrypto = calculateTotalCrypto(user);
+        if (totalCryptoValue) {
+          totalCryptoValue.textContent = `R ${formatNumber(totalCrypto)}`;
+        }
+
+        // Update individual crypto balances
+        if (btcAmount) btcAmount.textContent = user.btcBalance || 0;
+        if (btcValue) btcValue.textContent = `R ${formatNumber((user.btcBalance || 0) * 65432.21)}`;
+        
+        if (ethAmount) ethAmount.textContent = user.ethBalance || 0;
+        if (ethValue) ethValue.textContent = `R ${formatNumber((user.ethBalance || 0) * 3452.78)}`;
+        
+        if (xrpAmount) xrpAmount.textContent = user.xrpBalance || 0;
+        if (xrpValue) xrpValue.textContent = `R ${formatNumber((user.xrpBalance || 0) * 0.78)}`;
+      }
+
+      function calculateTotalCrypto(user) {
+        const btcValue = (user.btcBalance || 0) * 65432.21;
+        const ethValue = (user.ethBalance || 0) * 3452.78;
+        const xrpValue = (user.xrpBalance || 0) * 0.78;
+        return btcValue + ethValue + xrpValue;
+      }
+
+      function refreshBalances() {
+        fetch("/api/users/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              // Update the current user data in localStorage
+              localStorage.setItem("currentUser", JSON.stringify(data.user));
+              // Update the UI with new balance
+              updateBalanceDisplay(data.user);
+            }
+          })
+          .catch((error) => {
+            console.error("Error refreshing balances:", error);
+          });
+      }
+
+      function formatNumber(num) {
+        if (num === undefined || num === null) return "0.00";
+        return Number.parseFloat(num).toLocaleString("en-ZA", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        });
+      }
+    });
+  </script>
+</body>
+</html>

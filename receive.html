@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Wallet - Receive</title>
+  <link rel="stylesheet" href="css/new-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <div class="wallet-header">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <a href="dashboard.html" class="menu-btn" style="color: white;">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+        <h2>Receive</h2>
+        <div style="width: 24px;"></div>
+      </div>
+    </div>
+
+    <!-- Token Selector -->
+    <div class="card">
+      <div class="form-group">
+        <label for="tokenSelect" class="form-label">Select token</label>
+        <select id="tokenSelect" class="country-select">
+          <option value="MAIN">Main Wallet</option>
+          <option value="TRX">TRX</option>
+          <option value="USDT">USDT</option>
+          <option value="USDC">USDC</option>
+          <option value="BNB">BNB</option>
+          <option value="SOL">SOL</option>
+          <option value="ETH">ETH</option>
+          <option value="BTC">BTC</option>
+          <option value="XRP">XRP</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- QR Code Container -->
+    <div class="qr-container">
+      <div id="qrCode" class="qr-code">
+        <!-- QR code will be generated here -->
+      </div>
+      
+      <div class="address-container" id="displayAddress">
+        Select a token to view address
+      </div>
+      
+      <p class="text-sm text-secondary text-center mb-16">
+        Only send <span id="selectedTokenName">the selected token</span> to this address. Sending any other coins may result in permanent loss.
+      </p>
+      
+      <div class="address-actions">
+        <button id="copyAddressBtn" class="address-action">
+          <i class="far fa-copy"></i>
+          <span>Copy</span>
+        </button>
+        <button id="shareAddressBtn" class="address-action">
+          <i class="fas fa-share-alt"></i>
+          <span>Share</span>
+        </button>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-compass"></i>
+        <span>Explore</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallets</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-gift"></i>
+        <span>Rewards</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="js/receive.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luno - Transactions</title>
+  <link rel="stylesheet" href="css/luno-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <div class="wallet-header">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <a href="dashboard.html" class="menu-btn" style="color: white;">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+        <h2>Transactions</h2>
+        <div style="width: 24px;"></div>
+      </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">All</button>
+      <button class="filter-tab" data-filter="sent">Sent</button>
+      <button class="filter-tab" data-filter="received">Received</button>
+      <button class="filter-tab" data-filter="deposit">Deposits</button>
+      <button class="filter-tab" data-filter="withdrawal">Withdrawals</button>
+    </div>
+
+    <!-- Transaction List -->
+    <div class="card">
+      <div class="transaction-item" data-type="received">
+        <div class="transaction-icon received">
+          <i class="fas fa-arrow-down"></i>
+        </div>
+        <div class="transaction-info">
+          <div class="transaction-title">Received TRX</div>
+          <div class="transaction-date">24 Dec 2024</div>
+        </div>
+        <div class="transaction-amount">
+          <div class="transaction-value received">+R 10.00</div>
+          <div class="transaction-status">Completed</div>
+        </div>
+      </div>
+
+      <div class="transaction-item" data-type="received">
+        <div class="transaction-icon received">
+          <i class="fas fa-arrow-down"></i>
+        </div>
+        <div class="transaction-info">
+          <div class="transaction-title">Received USDT</div>
+          <div class="transaction-date">24 Dec 2024</div>
+        </div>
+        <div class="transaction-amount">
+          <div class="transaction-value received">+R 1000.00</div>
+          <div class="transaction-status">Completed</div>
+        </div>
+      </div>
+
+      <div class="transaction-item" data-type="sent">
+        <div class="transaction-icon sent">
+          <i class="fas fa-arrow-up"></i>
+        </div>
+        <div class="transaction-info">
+          <div class="transaction-title">Sent USDC</div>
+          <div class="transaction-date">23 Dec 2024</div>
+        </div>
+        <div class="transaction-amount">
+          <div class="transaction-value sent">-R 500.00</div>
+          <div class="transaction-status">Completed</div>
+        </div>
+      </div>
+
+      <div class="transaction-item" data-type="received">
+        <div class="transaction-icon received">
+          <i class="fas fa-arrow-down"></i>
+        </div>
+        <div class="transaction-info">
+          <div class="transaction-title">Received BNB</div>
+          <div class="transaction-date">22 Dec 2024</div>
+        </div>
+        <div class="transaction-amount">
+          <div class="transaction-value received">+R 250.00</div>
+          <div class="transaction-status">Completed</div>
+        </div>
+      </div>
+
+      <div class="transaction-item" data-type="sent">
+        <div class="transaction-icon sent">
+          <i class="fas fa-arrow-up"></i>
+        </div>
+        <div class="transaction-info">
+          <div class="transaction-title">Sent SOL</div>
+          <div class="transaction-date">21 Dec 2024</div>
+        </div>
+        <div class="transaction-amount">
+          <div class="transaction-value sent">-R 75.00</div>
+          <div class="transaction-status">Completed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transaction Receipt Modal -->
+    <div class="modal" id="receiptModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Transaction Receipt</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="transaction-receipt">
+            <div class="receipt-header">
+              <img src="img/luno-logo.png" alt="Luno" class="receipt-logo">
+            </div>
+            
+            <div class="receipt-greeting">
+              <p>Hi <span id="receiptName">[name]</span></p>
+              <p>You have sent <span id="receiptAmount">BTC 0.0014642</span> to <span id="receiptAddress">3FSabc123REovz8THf6X6KJqVMcARJ3Jwu</span></p>
+            </div>
+            
+            <div class="receipt-details">
+              <div class="receipt-row">
+                <div class="receipt-label">Amount</div>
+                <div class="receipt-value" id="receiptDetailAmount">BTC 0.0014642</div>
+              </div>
+              
+              <div class="receipt-row">
+                <div class="receipt-label">Fee</div>
+                <div class="receipt-value" id="receiptFee">BTC 0.00011402</div>
+              </div>
+              
+              <div class="receipt-row">
+                <div class="receipt-label">Address</div>
+                <div class="receipt-value" id="receiptDetailAddress">3FSabc123REovz8THf6X6KJqVMcARJ3Jwu</div>
+              </div>
+              
+              <div class="receipt-row">
+                <div class="receipt-label">Transaction</div>
+                <div class="receipt-value" id="receiptTxId">20abc1239f4eaf2b4d75eca922c8ceOc8aefc1e9023e8615196968d31d70bbba</div>
+              </div>
+            </div>
+            
+            <div class="receipt-actions">
+              <p>Don't recognize this activity? <a href="#" class="receipt-action-link">Report it immediately.</a></p>
+              <p>If you made a mistake sending this crypto <a href="#">read this article</a> on what you can do.</p>
+            </div>
+            
+            <div class="receipt-footer">
+              <p>To the moon 🚀</p>
+              <p>Team Luno</p>
+              <p>Questions? Visit our <a href="#">Help Centre</a>.</p>
+            </div>
+            
+            <div class="receipt-app-links">
+              <a href="#" class="receipt-app-link">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+              </a>
+              <a href="#" class="receipt-app-link">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play" style="height: 40px;">
+              </a>
+            </div>
+            
+            <div class="receipt-social">
+              <div class="receipt-social-title">Follow us on:</div>
+              <div class="receipt-social-icons">
+                <a href="#" class="receipt-social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="receipt-social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="receipt-social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="receipt-social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="receipt-social-icon"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+            <br>
+            <br>
+    
+          
+          <button id="printReceiptBtn" class="auth-btn mt-16">
+            <i class="fas fa-print"></i> Print Receipt
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-compass"></i>
+        <span>Explore</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallets</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-gift"></i>
+        <span>Rewards</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check if user is logged in
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const token = localStorage.getItem("token");
+
+      if (!currentUser || !token) {
+        // Redirect to login if not logged in
+        window.location.href = "index.html";
+        return;
+      }
+
+      // Filter tabs functionality
+      const filterTabs = document.querySelectorAll(".filter-tab");
+      const transactionItems = document.querySelectorAll(".transaction-item");
+
+      filterTabs.forEach(tab => {
+        tab.addEventListener("click", function() {
+          // Remove active class from all tabs
+          filterTabs.forEach(t => t.classList.remove("active"));
+          
+          // Add active class to clicked tab
+          this.classList.add("active");
+          
+          // Get filter value
+          const filter = this.getAttribute("data-filter");
+          
+          // Filter transactions
+          transactionItems.forEach(item => {
+            if (filter === "all" || item.getAttribute("data-type") === filter) {
+              item.style.display = "flex";
+            } else {
+              item.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // Transaction item click to show receipt
+      transactionItems.forEach(item => {
+        item.addEventListener("click", function() {
+          const type = this.getAttribute("data-type");
+          const title = this.querySelector(".transaction-title").textContent;
+          const amount = this.querySelector(".transaction-value").textContent.replace(/[+\-R\s]/g, "");
+          const token = title.split(" ")[1];
+          
+          // Show receipt modal
+          showReceipt({
+            type,
+            amount,
+            token,
+            address: "3FSabc123REovz8THf6X6KJqVMcARJ3Jwu", // Example address
+            txId: "20abc1239f4eaf2b4d75eca922c8ceOc8aefc1e9023e8615196968d31d70bbba" // Example transaction ID
+          });
+        });
+      });
+
+      // Function to show receipt
+      function showReceipt(transaction) {
+        // Update receipt details
+        document.getElementById("receiptName").textContent = currentUser.name || "[name]";
+        document.getElementById("receiptAmount").textContent = `${transaction.token} ${transaction.amount}`;
+        document.getElementById("receiptAddress").textContent = transaction.address;
+        document.getElementById("receiptDetailAmount").textContent = `${transaction.token} ${transaction.amount}`;
+        document.getElementById("receiptFee").textContent = `${transaction.token} ${(parseFloat(transaction.amount) * 0.01).toFixed(8)}`;
+        document.getElementById("receiptDetailAddress").textContent = transaction.address;
+        document.getElementById("receiptTxId").textContent = transaction.txId;
+        
+        // Show modal
+        document.getElementById("receiptModal").classList.add("active");
+      }
+
+      // Close modal
+      const closeModalButtons = document.querySelectorAll(".modal-close");
+      closeModalButtons.forEach(button => {
+        button.addEventListener("click", function() {
+          document.querySelectorAll(".modal").forEach(modal => {
+            modal.classList.remove("active");
+          });
+        });
+      });
+
+      // Print receipt
+      const printReceiptBtn = document.getElementById("printReceiptBtn");
+      if (printReceiptBtn) {
+        printReceiptBtn.addEventListener("click", function() {
+          const receiptContent = document.querySelector(".transaction-receipt").innerHTML;
+          const printWindow = window.open("", "", "width=600,height=600");
+          
+          printWindow.document.write(`
+            <html>
+              <head>
+                <title>Transaction Receipt</title>
+                <style>
+                  body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; }
+                  .receipt-header { background-color: #0a1172; color: white; padding: 20px; text-align: center; }
+                  .receipt-logo { height: 40px; }
+                  .receipt-greeting { margin: 20px; }
+                  .receipt-details { background-color: #f5f5f5; margin: 20px; padding: 20px; }
+                  .receipt-row { text-align: center; margin-bottom: 15px; }
+                  .receipt-label { font-weight: bold; margin-bottom: 5px; }
+                  .receipt-value { word-break: break-all; }
+                  .receipt-actions, .receipt-footer { margin: 20px; }
+                  .receipt-app-links { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+                  .receipt-social { text-align: center; margin: 20px 0; padding-top: 20px; border-top: 1px solid #eee; }
+                </style>
+              </head>
+              <body>
+                ${receiptContent}
+              </body>
+            </html>
+          `);
+          
+          printWindow.document.close();
+          printWindow.focus();
+          
+          setTimeout(() => {
+            printWindow.print();
+            printWindow.close();
+          }, 250);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

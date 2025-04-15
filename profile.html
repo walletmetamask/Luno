@@ -1,0 +1,448 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luno - Profile</title>
+  <link rel="stylesheet" href="css/luno-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="wallet-header">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <a href="dashboard.html" class="menu-btn" style="color: white;">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+        <h2>Profile</h2>
+        <div style="width: 24px;"></div>
+      </div>
+    </div>
+
+   
+    <div class="profile-header">
+      <div class="profile-avatar" id="profileAvatar">
+        <span id="profileInitial">J</span>
+      </div>
+      <h2 class="profile-name" id="profileName">John Doe</h2>
+      <p class="profile-email" id="profileEmail">john@example.com</p>
+    </div>
+
+  
+    <div class="profile-section">
+      <h3 class="profile-section-title">Account</h3>
+      <div class="card">
+        <div class="profile-menu-item" id="editProfileBtn">
+          <div class="profile-menu-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="profile-menu-text">Edit Profile</div>
+          <div class="profile-menu-action">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+        <div class="profile-menu-item" id="changePasswordBtn">
+          <div class="profile-menu-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="profile-menu-text">Change Password</div>
+          <div class="profile-menu-action">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="profile-section">
+      <h3 class="profile-section-title">Security</h3>
+      <div class="card">
+        <div class="profile-menu-item" id="twoFactorBtn">
+          <div class="profile-menu-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="profile-menu-text">Two-Factor Authentication</div>
+          <div class="profile-menu-action">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+        <div class="profile-menu-item" id="biometricBtn">
+          <div class="profile-menu-icon">
+            <i class="fas fa-fingerprint"></i>
+          </div>
+          <div class="profile-menu-text">Biometric Login</div>
+          <div class="profile-menu-action">
+            <label class="toggle-switch">
+              <input type="checkbox" id="biometricToggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="profile-section">
+      <h3 class="profile-section-title">Preferences</h3>
+      <div class="card">
+        <div class="profile-menu-item">
+          <div class="profile-menu-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <div class="profile-menu-text">Notifications</div>
+          <div class="profile-menu-action">
+            <label class="toggle-switch">
+              <input type="checkbox" id="notificationsToggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="profile-menu-item">
+          <div class="profile-menu-icon">
+            <i class="fas fa-moon"></i>
+          </div>
+          <div class="profile-menu-text">Dark Mode</div>
+          <div class="profile-menu-action">
+            <label class="toggle-switch">
+              <input type="checkbox" id="darkModeToggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="logoutBtn" class="logout-btn">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+
+
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-compass"></i>
+        <span>Explore</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallets</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-gift"></i>
+        <span>Rewards</span>
+      </a>
+      <a href="profile.html" class="nav-item active">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+
+
+  <div class="modal" id="editProfileModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Profile</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="profileForm">
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" id="name" class="form-input" placeholder="Enter your full name">
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-input" placeholder="Enter your email" readonly>
+          </div>
+          
+          <div class="form-error" id="profileError"></div>
+          
+          <button type="submit" class="auth-btn">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="modal" id="changePasswordModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Change Password</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="changePasswordForm">
+          <div class="form-group">
+            <label for="currentPassword" class="form-label">Current Password</label>
+            <input type="password" id="currentPassword" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="newPassword" class="form-label">New Password</label>
+            <input type="password" id="newPassword" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+            <input type="password" id="confirmNewPassword" class="form-input" required>
+          </div>
+          <div class="form-error" id="changePasswordError"></div>
+          <button type="submit" class="auth-btn">Update Password</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="modal" id="comingSoonModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Coming Soon</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; padding: 20px 0;">
+          <div style="font-size: 48px; color: var(--primary-color); margin-bottom: 20px;">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3 style="margin-bottom: 10px;">This feature is coming soon!</h3>
+          <p style="color: var(--text-secondary);">We're working hard to bring you this feature. Stay tuned for updates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check if user is logged in
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const token = localStorage.getItem("token");
+
+      if (!currentUser || !token) {
+        // Redirect to login if not logged in
+        window.location.href = "index.html";
+        return;
+      }
+
+      // Set user profile data
+      const profileName = document.getElementById("profileName");
+      const profileEmail = document.getElementById("profileEmail");
+      const profileInitial = document.getElementById("profileInitial");
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+
+      if (profileName && currentUser.name) {
+        profileName.textContent = currentUser.name;
+      }
+
+      if (profileEmail && currentUser.email) {
+        profileEmail.textContent = currentUser.email;
+      }
+
+      if (profileInitial && currentUser.name) {
+        profileInitial.textContent = currentUser.name.charAt(0).toUpperCase();
+      }
+
+      if (nameInput && currentUser.name) {
+        nameInput.value = currentUser.name;
+      }
+
+      if (emailInput && currentUser.email) {
+        emailInput.value = currentUser.email;
+      }
+
+      // Apply dark mode if enabled
+      const isDarkMode = localStorage.getItem("darkMode") === "true";
+      if (isDarkMode) {
+        document.body.classList.add("dark-mode");
+        const darkModeToggle = document.getElementById("darkModeToggle");
+        if (darkModeToggle) {
+          darkModeToggle.checked = true;
+        }
+      }
+
+      // Dark mode toggle
+      const darkModeToggle = document.getElementById("darkModeToggle");
+      if (darkModeToggle) {
+        darkModeToggle.addEventListener("change", function() {
+          if (this.checked) {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("darkMode", "true");
+          } else {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("darkMode", "false");
+          }
+        });
+      }
+
+      // Logout button
+      const logoutBtn = document.getElementById("logoutBtn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          // Clear user data from localStorage
+          localStorage.removeItem("currentUser");
+          localStorage.removeItem("token");
+
+          // Redirect to login page
+          window.location.href = "index.html";
+        });
+      }
+
+      // Edit Profile button
+      const editProfileBtn = document.getElementById("editProfileBtn");
+      if (editProfileBtn) {
+        editProfileBtn.addEventListener("click", () => {
+          document.getElementById("editProfileModal").classList.add("active");
+        });
+      }
+
+      // Change Password button
+      const changePasswordBtn = document.getElementById("changePasswordBtn");
+      if (changePasswordBtn) {
+        changePasswordBtn.addEventListener("click", () => {
+          document.getElementById("changePasswordModal").classList.add("active");
+        });
+      }
+
+      // Coming soon features
+      const comingSoonFeatures = [
+        document.getElementById("twoFactorBtn"),
+        document.getElementById("biometricBtn")
+      ];
+
+      comingSoonFeatures.forEach(btn => {
+        if (btn) {
+          btn.addEventListener("click", () => {
+            document.getElementById("comingSoonModal").classList.add("active");
+          });
+        }
+      });
+
+      // Profile form handling
+      const profileForm = document.getElementById("profileForm");
+      if (profileForm) {
+        profileForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("name").value;
+          const errorElement = document.getElementById("profileError");
+
+          // Clear previous errors
+          errorElement.textContent = "";
+
+          // Make API request to update profile
+          fetch("/api/users/profile", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              name,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                // Update user data in localStorage
+                currentUser.name = name;
+                localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+                // Update profile display
+                profileName.textContent = name;
+                profileInitial.textContent = name.charAt(0).toUpperCase();
+
+                // Close modal
+                document.getElementById("editProfileModal").classList.remove("active");
+
+                // Show success message
+                alert("Profile updated successfully");
+              } else {
+                errorElement.textContent = data.message || "Failed to update profile";
+              }
+            })
+            .catch((error) => {
+              errorElement.textContent = "An error occurred. Please try again.";
+              console.error("Profile update error:", error);
+            });
+        });
+      }
+
+      // Change password form handling
+      const changePasswordForm = document.getElementById("changePasswordForm");
+      if (changePasswordForm) {
+        changePasswordForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const currentPassword = document.getElementById("currentPassword").value;
+          const newPassword = document.getElementById("newPassword").value;
+          const confirmNewPassword = document.getElementById("confirmNewPassword").value;
+          const errorElement = document.getElementById("changePasswordError");
+
+          // Clear previous errors
+          errorElement.textContent = "";
+
+          // Validate passwords match
+          if (newPassword !== confirmNewPassword) {
+            errorElement.textContent = "New passwords do not match";
+            return;
+          }
+
+          // Make API request to change password
+          fetch("/api/users/change-password", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              currentPassword,
+              newPassword,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                // Close modal and show success message
+                document.getElementById("changePasswordModal").classList.remove("active");
+                alert("Password changed successfully");
+                changePasswordForm.reset();
+              } else {
+                errorElement.textContent = data.message || "Failed to change password";
+              }
+            })
+            .catch((error) => {
+              errorElement.textContent = "An error occurred. Please try again.";
+              console.error("Password change error:", error);
+            });
+        });
+      }
+
+      // Close modals
+      const closeModalButtons = document.querySelectorAll(".modal-close");
+      closeModalButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".modal").forEach((modal) => {
+            modal.classList.remove("active");
+          });
+        });
+      });
+
+      // Close modal when clicking outside
+      document.querySelectorAll(".modal").forEach((modal) => {
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.classList.remove("active");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

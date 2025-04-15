@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Wallet - Assets</title>
+  <link rel="stylesheet" href="css/new-style.css">
+  <link rel="stylesheet" href="css/luno-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+
+    <!-- Wallet Header -->
+    <div class="wallet-header">
+      <h1 class="balance-amount" id="mainBalance">R <span id="balanceValue">0.00</span></h1>
+      <div class="balance-label">Combined Wallet Value</div>
+    </div>
+
+    <!-- Token List -->
+    <div class="section-header">YOUR TOKENS</div>
+    <div class="card">
+      <div class="investment-card" data-token="TRX">
+        <div class="crypto-icon" style="background-color: #FF0000;">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">TRX</div>
+          <div class="investment-value" id="trxPrice">R 0.066762</div>
+        </div>
+        <div class="investment-change">
+          <div class="token-amount" id="trxAmount">0</div>
+          <div class="token-value" id="trxValue">R 0</div>
+        </div>
+      </div>
+
+      <div class="investment-card" data-token="USDT">
+        <div class="crypto-icon" style="background-color: #26A17B;">
+          <i class="fas fa-dollar-sign"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">USDT</div>
+          <div class="investment-value" id="usdtPrice">R 1.00</div>
+        </div>
+        <div class="investment-change">
+          <div class="token-amount" id="usdtAmount">0</div>
+          <div class="token-value" id="usdtValue">R 0</div>
+        </div>
+      </div>
+
+      <div class="investment-card" data-token="USDC">
+        <div class="crypto-icon" style="background-color: #2775CA;">
+          <i class="fas fa-dollar-sign"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">USDC</div>
+          <div class="investment-value" id="usdcPrice">R 1.01</div>
+        </div>
+        <div class="investment-change">
+          <div class="token-amount" id="usdcAmount">0</div>
+          <div class="token-value" id="usdcValue">R 0</div>
+        </div>
+      </div>
+
+      <div class="investment-card" data-token="BNB">
+        <div class="crypto-icon" style="background-color: #F3BA2F;">
+          <i class="fas fa-coins"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">BNB</div>
+          <div class="investment-value" id="bnbPrice">R 610.38</div>
+        </div>
+        <div class="investment-change">
+          <div class="token-amount" id="bnbAmount">0</div>
+          <div class="token-value" id="bnbValue">R 0</div>
+        </div>
+      </div>
+
+      <div class="investment-card" data-token="SOL">
+        <div class="crypto-icon" style="background-color: #9945FF;">
+          <i class="fas fa-sun"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">SOL</div>
+          <div class="investment-value" id="solPrice">R 126.54</div>
+        </div>
+        <div class="investment-change">
+          <div class="token-amount" id="solAmount">0</div>
+          <div class="token-value" id="solValue">R 0</div>
+        </div>
+      </div>
+
+      <div class="investment-card" data-token="ETH">
+        <div class="crypto-icon eth">
+          <i class="fab fa-ethereum"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">ETH</div>
+          <div class="investment-value" id="ethPrice">R 3,452.78</div>
+        </div>
+        <div class="investment-change">
+          <div class="token-amount" id="ethAmount">0</div>
+          <div class="token-value" id="ethValue">R 0</div>
+        </div>
+      </div>
+
+      <div class="investment-card" data-token="BTC">
+        <div class="crypto-icon btc">
+          <i class="fab fa-bitcoin"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">BTC</div>
+          <div class="investment-value" id="btcPrice">R 65,432.21</div>
+        </div>
+        <div class="investment-change">
+          <div class="token-amount" id="btcAmount">0</div>
+          <div class="token-value" id="btcValue">R 0</div>
+        </div>
+      </div>
+
+      <div class="investment-card" data-token="XRP">
+        <div class="crypto-icon xrp">
+          <i class="fas fa-coins"></i>
+        </div>
+        <div class="investment-info">
+          <div class="investment-name">XRP</div>
+          <div class="investment-value" id="xrpPrice">R 0.78</div>
+        </div>
+        <div class="investment-change">
+          <div class="token-amount" id="xrpAmount">0</div>
+          <div class="token-value" id="xrpValue">R 0</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-compass"></i>
+        <span>Explore</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item active">
+        <i class="fas fa-wallet"></i>
+        <span>Wallets</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-gift"></i>
+        <span>Rewards</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Token Actions Modal -->
+  <div class="modal" id="tokenActionsModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="tokenActionTitle">Token Actions</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="token-actions-container">
+          <a href="#" class="token-action-btn" id="sendTokenBtn">
+            <i class="fas fa-paper-plane"></i>
+            <span>Send</span>
+          </a>
+          <a href="#" class="token-action-btn" id="receiveTokenBtn">
+            <i class="fas fa-qrcode"></i>
+            <span>Receive</span>
+          </a>
+          <a href="#" class="token-action-btn fund-token-btn">
+            <i class="fas fa-wallet"></i>
+            <span>Fund from Main</span>
+          </a>
+          <a href="#" class="token-action-btn">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Swap</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fund Token Modal -->
+  <div class="modal" id="fundTokenModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="fundTokenTitle">Fund Token Wallet</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="fundTokenForm">
+          <input type="hidden" id="tokenType" value="">
+          <div class="form-group">
+            <label for="fundAmount" class="form-label">Amount</label>
+            <input type="number" id="fundAmount" class="form-input" min="0.01" step="0.01" placeholder="0.00" required>
+          </div>
+          
+          <div id="fundTokenError" class="form-error"></div>
+          
+          <button type="submit" class="auth-btn" id="fundTokenBtn">
+            <i class="fas fa-wallet"></i> Fund Wallet
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check if user is logged in
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const token = localStorage.getItem("token");
+
+      if (!currentUser || !token) {
+        // Redirect to login if not logged in
+        window.location.href = "index.html";
+        return;
+      }
+
+      // Load user data and balances
+      loadUserData();
+
+      // Set up polling for balance updates - check every 10 seconds
+      setInterval(() => {
+        refreshBalances();
+      }, 10000);
+
+      // Helper functions
+      function loadUserData() {
+        // Update main balance display
+        const balanceValue = document.getElementById("balanceValue");
+        if (balanceValue) {
+          if (currentUser.balance > 0) {
+            balanceValue.textContent = formatNumber(currentUser.balance);
+          } else {
+            balanceValue.textContent = "0.00";
+          }
+        }
+
+        // Update token balances
+        updateTokenBalance("trx", currentUser.trxBalance || 0, 0.066762);
+        updateTokenBalance("usdt", currentUser.usdtBalance || 0, 1.00);
+        updateTokenBalance("usdc", currentUser.usdcBalance || 0, 1.01);
+        updateTokenBalance("bnb", currentUser.bnbBalance || 0, 610.38);
+        updateTokenBalance("sol", currentUser.solBalance || 0, 126.54);
+        updateTokenBalance("eth", currentUser.ethBalance || 0, 3452.78);
+        updateTokenBalance("btc", currentUser.btcBalance || 0, 65432.21);
+        updateTokenBalance("xrp", currentUser.xrpBalance || 0, 0.78);
+      }
+
+      function updateTokenBalance(token, balance, price) {
+        const amountElement = document.getElementById(`${token}Amount`);
+        const valueElement = document.getElementById(`${token}Value`);
+        
+        if (amountElement) {
+          amountElement.textContent = balance > 0 ? balance : "0";
+        }
+        
+        if (valueElement) {
+          const value = balance * price;
+          valueElement.textContent = `R ${value > 0 ? formatNumber(value) : "0.00"}`;
+        }
+      }
+
+      // Function to refresh balances from the server
+      function refreshBalances() {
+        fetch("/api/users/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              // Update the current user data in localStorage
+              const updatedUser = data.user;
+
+              // Only update if there are actual changes to avoid unnecessary re-renders
+              if (JSON.stringify(updatedUser) !== JSON.stringify(currentUser)) {
+                localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+
+                // Update the UI with new balance
+                loadUserData();
+              }
+            }
+          })
+          .catch((error) => {
+            console.error("Error refreshing balances:", error);
+          });
+      }
+
+      function formatNumber(num) {
+        if (num === undefined || num === null) return "0.00";
+        return Number.parseFloat(num).toLocaleString("en-ZA", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        });
+      }
+
+      // Token item click handler
+      const tokenItems = document.querySelectorAll(".investment-card");
+      tokenItems.forEach((item) => {
+        item.addEventListener("click", function() {
+          const tokenType = this.getAttribute("data-token");
+          showTokenActions(tokenType);
+        });
+      });
+
+      // Add this function to show token actions
+      function showTokenActions(tokenType) {
+        // Update modal title
+        document.getElementById("tokenActionTitle").textContent = `${tokenType} Actions`;
+        
+        // Set token type for send and receive buttons
+        document.getElementById("sendTokenBtn").href = `send.html?token=${tokenType}`;
+        document.getElementById("receiveTokenBtn").href = `receive.html?token=${tokenType}`;
+        
+        // Set token type for fund button
+        const fundTokenBtn = document.querySelector(".fund-token-btn");
+        fundTokenBtn.setAttribute("data-token", tokenType);
+        
+        // Show modal
+        document.getElementById("tokenActionsModal").classList.add("active");
+
+        // Add event listener for fund token button
+        fundTokenBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          showFundTokenModal(tokenType);
+        });
+      }
+
+      function showFundTokenModal(tokenType) {
+        // Remove existing token actions modal
+        document.getElementById("tokenActionsModal").classList.remove("active");
+
+        // Update fund token modal title
+        document.getElementById("fundTokenTitle").textContent = `Fund ${tokenType} Wallet`;
+        
+        // Set token type in hidden field
+        document.getElementById("tokenType").value = tokenType;
+        
+        // Update button text
+        document.getElementById("fundTokenBtn").innerHTML = `<i class="fas fa-wallet"></i> Fund ${tokenType} Wallet`;
+        
+        // Show fund token modal
+        document.getElementById("fundTokenModal").classList.add("active");
+      }
+
+      // Fund token form submission
+      const fundTokenForm = document.getElementById("fundTokenForm");
+      if (fundTokenForm) {
+        fundTokenForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const tokenType = document.getElementById("tokenType").value;
+          const amount = document.getElementById("fundAmount").value;
+          const errorElement = document.getElementById("fundTokenError");
+
+          // Clear previous errors
+          errorElement.textContent = "";
+
+          // Validate amount
+          if (Number.parseFloat(amount) <= 0) {
+            errorElement.textContent = "Amount must be greater than 0";
+            return;
+          }
+
+          // Make API request to fund token wallet
+          fetch("/api/transactions/fund-token", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              tokenType,
+              amount: Number.parseFloat(amount),
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                // Close modal
+                document.getElementById("fundTokenModal").classList.remove("active");
+
+                // Update the UI immediately
+                const updatedUser = JSON.parse(localStorage.getItem("currentUser"));
+                updatedUser[`${tokenType.toLowerCase()}Balance`] = (updatedUser[`${tokenType.toLowerCase()}Balance`] || 0) + Number.parseFloat(amount);
+                localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+
+                // Update the token balance display
+                updateTokenBalance(tokenType.toLowerCase(), updatedUser[`${tokenType.toLowerCase()}Balance`], getTokenPrice(tokenType));
+
+                // Show success message
+                alert(`Successfully funded ${tokenType} wallet with ${amount} ${tokenType}`);
+              } else {
+                errorElement.textContent = data.message || "Failed to fund wallet";
+              }
+            })
+            .catch((error) => {
+              errorElement.textContent = "An error occurred. Please try again.";
+              console.error("Fund token error:", error);
+            });
+        });
+      }
+
+      // Function to get token price
+      function getTokenPrice(tokenType) {
+        const prices = {
+          "TRX": 0.066762,
+          "USDT": 1.00,
+          "USDC": 1.01,
+          "BNB": 610.38,
+          "SOL": 126.54,
+          "ETH": 3452.78,
+          "BTC": 65432.21,
+          "XRP": 0.78
+        };
+        return prices[tokenType] || 0;
+      }
+
+      // Close modals
+      const closeModalButtons = document.querySelectorAll(".modal-close");
+      closeModalButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".modal").forEach((modal) => {
+            modal.classList.remove("active");
+          });
+        });
+      });
+
+      // Close modal when clicking outside
+      document.querySelectorAll(".modal").forEach((modal) => {
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.classList.remove("active");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

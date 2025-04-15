@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luno - Register</title>
+  <link rel="stylesheet" href="css/luno-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="luno-header">
+      <img src="img/luno-logo.png" alt="Luno" class="luno-logo">
+    </div>
+    
+    <div class="auth-container">
+      <div class="auth-header">
+        <h1 class="auth-title">Sign up</h1>
+      </div>
+      
+      <form id="registerForm" class="auth-form">
+        <div class="form-group">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" id="name" class="form-input" placeholder="Enter your full name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" class="form-input" placeholder="Create a password" required>
+          <div class="form-hint">Use at least 8 characters, 1 number, 1 uppercase & 1 lowercase letter</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" id="confirmPassword" class="form-input" placeholder="Confirm your password" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="country" class="form-label">Country of residence</label>
+          <select id="country" class="country-select" required>
+            <option value="South Africa">South Africa</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="Kenya">Kenya</option>
+            <option value="Ghana">Ghana</option>
+            <option value="United States">United States</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Canada">Canada</option>
+            <option value="Australia">Australia</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-checkbox">
+          <input type="checkbox" id="newsletter">
+          <label for="newsletter">Want the latest news, tips and promos?</label>
+        </div>
+        
+        <div class="form-error" id="registerError"></div>
+        
+        <div class="text-sm text-secondary mb-16">
+          By signing up I agree to the <a href="#" class="text-primary">terms of use</a> and processing of my personal data as stated in the <a href="#" class="text-primary">privacy policy</a>
+        </div>
+        
+        <button type="submit" class="auth-btn">SIGN UP</button>
+        
+        <div class="auth-links mt-16">
+          <a href="index.html">SIGN IN</a>
+        </div>
+      </form>
+      
+      <div class="auth-divider">
+        <span>Or sign up with</span>
+      </div>
+      
+      <div class="social-buttons">
+        <button class="social-btn">
+          <i class="fab fa-google"></i>
+          <span>Google</span>
+        </button>
+        <button class="social-btn">
+          <i class="fab fa-facebook-f"></i>
+          <span>Facebook</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
