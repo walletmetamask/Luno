@@ -665,7 +665,7 @@ app.post("/api/notifications/send", authenticateToken, (req, res) => {
 
 // Serve HTML files
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"))
+  res.sendFile(path.join(__dirname, "landing.html"))
 })
 
 app.get("*", (req, res) => {
